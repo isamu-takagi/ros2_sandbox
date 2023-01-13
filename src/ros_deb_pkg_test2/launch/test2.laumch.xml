@@ -1,0 +1,1 @@
+<launch><node pkg="ros_deb_pkg_test2" exec="ros_deb_pkg_test2" name="ros_deb_pkg_test2"/></launch>
