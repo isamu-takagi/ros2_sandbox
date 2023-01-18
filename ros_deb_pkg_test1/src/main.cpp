@@ -16,5 +16,5 @@
 
 int main()
 {
-  std::cout << "package1 v1.0.0" << std::endl;
+  std::cout << "package1 v1.0.1" << std::endl;
 }
