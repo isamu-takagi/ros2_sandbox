@@ -27,6 +27,9 @@ void CppSubDev::on_color(const SampleColor::Message::SharedPtr msg)
   RCLCPP_INFO(get_logger(), "r: %f", msg->color.r);
   RCLCPP_INFO(get_logger(), "g: %f", msg->color.g);
   RCLCPP_INFO(get_logger(), "b: %f", msg->color.b);
+  if (msg->has_alpha) {
+    RCLCPP_INFO(get_logger(), "a: %f", msg->color.a);
+  }
   RCLCPP_INFO(get_logger(), "---");
 }
 
