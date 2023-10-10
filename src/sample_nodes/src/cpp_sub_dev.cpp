@@ -24,7 +24,10 @@ CppSubDev::CppSubDev() : Node("cpp_sub_dev")
 
 void CppSubDev::on_color(const SampleColor::Message::SharedPtr msg)
 {
-  RCLCPP_INFO(get_logger(), "r: %f, g: %f, b: %f", msg->r, msg->g, msg->b);
+  RCLCPP_INFO(get_logger(), "r: %f", msg->r);
+  RCLCPP_INFO(get_logger(), "g: %f", msg->g);
+  RCLCPP_INFO(get_logger(), "b: %f", msg->b);
+  RCLCPP_INFO(get_logger(), "---");
 }
 
 int main(int argc, char ** argv)
