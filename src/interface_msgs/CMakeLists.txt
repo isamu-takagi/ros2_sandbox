@@ -3,5 +3,5 @@ project(interface_msgs)
 
 find_package(ament_cmake_auto REQUIRED)
 ament_auto_find_build_dependencies()
-rosidl_generate_interfaces(${PROJECT_NAME} "msg/SampleMessage.msg")
+rosidl_generate_interfaces(${PROJECT_NAME} "msg/SampleMessage.msg" DEPENDENCIES std_msgs)
 ament_auto_package()

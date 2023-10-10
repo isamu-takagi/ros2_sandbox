@@ -53,16 +53,17 @@ struct rclcpp::TypeAdapter<
 
   static void convert_to_ros_message(const custom_type & custom, ros_message_type & rosidl)
   {
-    rosidl.r = custom.r;
-    rosidl.g = custom.g;
-    rosidl.b = custom.b;
+    rosidl.has_alpha = false;
+    rosidl.color.r = custom.r;
+    rosidl.color.g = custom.g;
+    rosidl.color.b = custom.b;
   }
 
   static void convert_to_custom(const ros_message_type & rosidl, custom_type & custom)
   {
-    custom.r = rosidl.r;
-    custom.g = rosidl.g;
-    custom.b = rosidl.b;
+    custom.r = rosidl.color.r;
+    custom.g = rosidl.color.g;
+    custom.b = rosidl.color.b;
   }
 };
 

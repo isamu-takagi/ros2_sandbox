@@ -27,9 +27,11 @@ CppPubDev::CppPubDev() : Node("cpp_pub_dev")
 void CppPubDev::on_timer()
 {
   SampleColor::Message msg;
-  msg.r = 4;
-  msg.g = 5;
-  msg.b = 6;
+  msg.has_alpha = true;
+  msg.color.r = 4;
+  msg.color.g = 5;
+  msg.color.b = 6;
+  msg.color.a = 7;
   pub_->publish(msg);
 }
 
