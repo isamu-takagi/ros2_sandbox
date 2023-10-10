@@ -1,0 +1,4 @@
+<launch>
+  <autoware/>
+  <log message="$(load-yaml aaaaa)"/>
+</launch>
