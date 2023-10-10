@@ -24,7 +24,10 @@ CppSubV1::CppSubV1() : Node("cpp_sub_v1")
 
 void CppSubV1::on_color(const SampleColor::Message & msg)
 {
-  RCLCPP_INFO(get_logger(), "r: %f, g: %f, b: %f", msg.r, msg.g, msg.b);
+  RCLCPP_INFO(get_logger(), "r: %f", msg.r);
+  RCLCPP_INFO(get_logger(), "g: %f", msg.g);
+  RCLCPP_INFO(get_logger(), "b: %f", msg.b);
+  RCLCPP_INFO(get_logger(), "---");
 }
 
 int main(int argc, char ** argv)
