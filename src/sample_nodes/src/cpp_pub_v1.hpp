@@ -15,6 +15,7 @@
 #ifndef CPP_PUB_V1_HPP_
 #define CPP_PUB_V1_HPP_
 
+#include <interface_specs/interface_manager.hpp>
 #include <interface_specs/sample_color/v1.hpp>
 #include <rclcpp/rclcpp.hpp>
 
@@ -25,6 +26,7 @@ public:
 
 private:
   using SampleColor = interface_specs::sample_color::v1::Interface;
+  interface_specs::ComponentInterfaceManager::UniquePtr interface_;
   SampleColor::Publisher pub_;
   rclcpp::TimerBase::SharedPtr timer_;
   void on_timer();

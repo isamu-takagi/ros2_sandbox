@@ -18,7 +18,8 @@
 
 CppPubV1::CppPubV1() : Node("cpp_pub_v1")
 {
-  pub_ = SampleColor::create_publisher(this);
+  interface_ = interface_specs::create_interface_manager(this);
+  pub_ = interface_->create_publisher<SampleColor>();
 
   const auto period = rclcpp::Rate(1.0).period();
   timer_ = rclcpp::create_timer(this, get_clock(), period, [this]() { on_timer(); });

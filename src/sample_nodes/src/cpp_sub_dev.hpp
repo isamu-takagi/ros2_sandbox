@@ -15,6 +15,7 @@
 #ifndef CPP_SUB_DEV_HPP_
 #define CPP_SUB_DEV_HPP_
 
+#include <interface_specs/interface_manager.hpp>
 #include <interface_specs/sample_color/dev.hpp>
 #include <rclcpp/rclcpp.hpp>
 
@@ -25,8 +26,8 @@ public:
 
 private:
   using SampleColor = interface_specs::sample_color::dev::Interface;
+  interface_specs::ComponentInterfaceManager::UniquePtr interface_;
   SampleColor::Subscription sub_;
-  rclcpp::TimerBase::SharedPtr timer_;
   void on_color(const SampleColor::Message::SharedPtr msg);
 };
 

@@ -18,8 +18,9 @@
 
 CppSubDev::CppSubDev() : Node("cpp_sub_dev")
 {
-  const auto callback = std::bind(&CppSubDev::on_color, this, std::placeholders::_1);
-  sub_ = SampleColor::create_subscription(this, callback);
+  interface_ = interface_specs::create_interface_manager(this);
+  sub_ = interface_->create_subscription<SampleColor>(
+    std::bind(&CppSubDev::on_color, this, std::placeholders::_1));
 }
 
 void CppSubDev::on_color(const SampleColor::Message::SharedPtr msg)

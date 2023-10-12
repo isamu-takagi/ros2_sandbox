@@ -15,6 +15,8 @@
 #ifndef INTERFACE_SPECS__SAMPLE_COLOR__V1_HPP_
 #define INTERFACE_SPECS__SAMPLE_COLOR__V1_HPP_
 
+#include "base.hpp"
+
 #include <interface_specs/message_interface_base.hpp>
 
 #include <interface_msgs/msg/sample_message.hpp>
@@ -29,17 +31,13 @@ struct CustomMessage
   float b;
 };
 
-struct Definition
+struct TypeDefinition
 {
   using Message = CustomMessage;
   using Adaptor = rclcpp::TypeAdapter<CustomMessage, interface_msgs::msg::SampleMessage>;
-  static constexpr char name[] = "/sample/color";
-  static constexpr auto reliability = RMW_QOS_POLICY_RELIABILITY_RELIABLE;
-  static constexpr auto durability = RMW_QOS_POLICY_DURABILITY_TRANSIENT_LOCAL;
-  static constexpr size_t depth = 1;
 };
 
-using Interface = MessageInterfaceBase<Definition>;
+using Interface = MessageInterfaceBase<TypeDefinition, BaseDefinition>;
 
 }  // namespace interface_specs::sample_color::v1
 

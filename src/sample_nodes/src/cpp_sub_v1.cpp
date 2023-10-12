@@ -18,8 +18,9 @@
 
 CppSubV1::CppSubV1() : Node("cpp_sub_v1")
 {
-  const auto callback = std::bind(&CppSubV1::on_color, this, std::placeholders::_1);
-  sub_ = SampleColor::create_subscription(this, callback);
+  interface_ = interface_specs::create_interface_manager(this);
+  sub_ = interface_->create_subscription<SampleColor>(
+    std::bind(&CppSubV1::on_color, this, std::placeholders::_1));
 }
 
 void CppSubV1::on_color(const SampleColor::Message & msg)

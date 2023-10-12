@@ -15,6 +15,8 @@
 #ifndef INTERFACE_SPECS__SAMPLE_COLOR__DEV_HPP_
 #define INTERFACE_SPECS__SAMPLE_COLOR__DEV_HPP_
 
+#include "base.hpp"
+
 #include <interface_specs/message_interface_base.hpp>
 
 #include <interface_msgs/msg/sample_message.hpp>
@@ -22,17 +24,13 @@
 namespace interface_specs::sample_color::dev
 {
 
-struct Definition
+struct TypeDefinition
 {
   using Message = interface_msgs::msg::SampleMessage;
   using Adaptor = Message;
-  static constexpr char name[] = "/sample/color";
-  static constexpr auto reliability = RMW_QOS_POLICY_RELIABILITY_RELIABLE;
-  static constexpr auto durability = RMW_QOS_POLICY_DURABILITY_TRANSIENT_LOCAL;
-  static constexpr size_t depth = 1;
 };
 
-using Interface = MessageInterfaceBase<Definition>;
+using Interface = MessageInterfaceBase<TypeDefinition, BaseDefinition>;
 
 }  // namespace interface_specs::sample_color::dev
 

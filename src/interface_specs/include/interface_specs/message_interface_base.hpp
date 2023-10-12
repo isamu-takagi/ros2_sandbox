@@ -22,34 +22,14 @@
 namespace interface_specs
 {
 
-template <class T>
+template <class T, class S>
 struct MessageInterfaceBase
 {
+  using Setting = S;
   using Message = typename T::Message;
   using Adaptor = typename T::Adaptor;
   using Subscription = typename rclcpp::Subscription<Adaptor>::SharedPtr;
   using Publisher = typename rclcpp::Publisher<Adaptor>::SharedPtr;
-
-  static rclcpp::QoS get_qos()
-  {
-    rclcpp::QoS qos(T::depth);
-    qos.reliability(T::reliability);
-    qos.durability(T::durability);
-    return qos;
-  }
-
-  template <class F>
-  static Subscription create_subscription(rclcpp::Node * node, F && callback)
-  {
-    const auto qos = get_qos();
-    return node->create_subscription<Adaptor>(T::name, qos, std::forward<F>(callback));
-  }
-
-  static Publisher create_publisher(rclcpp::Node * node)
-  {
-    const auto qos = get_qos();
-    return node->create_publisher<Adaptor>(T::name, qos);
-  }
 };
 
 }  // namespace interface_specs

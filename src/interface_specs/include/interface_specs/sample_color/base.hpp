@@ -12,24 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef CPP_PUB_DEV_HPP_
-#define CPP_PUB_DEV_HPP_
+#ifndef INTERFACE_SPECS__SAMPLE_COLOR__BASE_HPP_
+#define INTERFACE_SPECS__SAMPLE_COLOR__BASE_HPP_
 
-#include <interface_specs/interface_manager.hpp>
-#include <interface_specs/sample_color/dev.hpp>
-#include <rclcpp/rclcpp.hpp>
+#include <rclcpp/qos.hpp>
 
-class CppPubDev : public rclcpp::Node
+namespace interface_specs::sample_color
 {
-public:
-  CppPubDev();
 
-private:
-  using SampleColor = interface_specs::sample_color::dev::Interface;
-  interface_specs::ComponentInterfaceManager::UniquePtr interface_;
-  SampleColor::Publisher pub_;
-  rclcpp::TimerBase::SharedPtr timer_;
-  void on_timer();
+struct BaseDefinition
+{
+  static constexpr char name[] = "/sample/color";
+  static constexpr auto reliability = RMW_QOS_POLICY_RELIABILITY_RELIABLE;
+  static constexpr auto durability = RMW_QOS_POLICY_DURABILITY_TRANSIENT_LOCAL;
+  static constexpr size_t depth = 1;
 };
 
-#endif  // CPP_PUB_DEV_HPP_
+}  // namespace interface_specs::sample_color
+
+#endif  // INTERFACE_SPECS__SAMPLE_COLOR__BASE_HPP_
