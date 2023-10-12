@@ -3,4 +3,5 @@ project(interface_specs)
 
 find_package(autoware_cmake REQUIRED)
 autoware_package()
+ament_python_install_package(${PROJECT_NAME} PACKAGE_DIR python)
 ament_auto_package()
