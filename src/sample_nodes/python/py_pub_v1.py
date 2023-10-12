@@ -15,24 +15,25 @@
 import rclpy
 import rclpy.node
 from interface_specs.interface_manager import ComponentInterfaceManager
-from interface_specs.sample_color.dev import Interface as SampleColor
+from interface_specs.sample_color.v1 import Interface as SampleColor
 
 
-class PySubDev(rclpy.node.Node):
+class PyPubV1(rclpy.node.Node):
     def __init__(self):
-        super().__init__("py_sub_dev")
+        super().__init__("py_pub_v1")
         self.manager = ComponentInterfaceManager(self)
-        self.sub = self.manager.create_subscription(SampleColor, self.on_msg)
+        self.pub = self.manager.create_publisher(SampleColor)
+        self.timer = self.create_timer(1.0, self.on_timer)
 
-    def on_msg(self, msg):
-        logger = self.get_logger()
-        logger.info(f"r: {msg.r}")
-        logger.info(f"g: {msg.g}")
-        logger.info(f"b: {msg.b}")
-        logger.info("---")
+    def on_timer(self):
+        msg = SampleColor.Message()
+        msg.r = 11.0
+        msg.g = 12.0
+        msg.b = 13.0
+        self.pub.publish(msg)
 
 
 if __name__ == "__main__":
     rclpy.init()
-    rclpy.spin(PySubDev())
+    rclpy.spin(PyPubV1())
     rclpy.shutdown()

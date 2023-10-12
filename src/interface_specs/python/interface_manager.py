@@ -15,17 +15,28 @@
 from rclpy.qos import QoSProfile
 
 
-class AutowareInterfaceManager:
+class WrappedPublisher:
+    def __init__(self, pub, convert):
+        self.pub = pub
+        self.convert = convert
+
+    def publish(self, msg):
+        self.pub.publish(self.convert(msg))
+
+
+class ComponentInterfaceManager:
     def __init__(self, node):
         self.node = node
 
     def create_subscription(self, interface, callback):
+        wrapped = lambda msg: callback(interface.convert_to_custom(msg))
         qos = self.get_qos(interface)
-        return self.node.create_subscription(interface.Message, interface.name, callback, qos)
+        return self.node.create_subscription(interface.RosType, interface.name, wrapped, qos)
 
     def create_publisher(self, interface):
         qos = self.get_qos(interface)
-        return self.node.create_publisher(interface.Message, interface.name, qos)
+        pub = self.node.create_publisher(interface.RosType, interface.name, qos)
+        return WrappedPublisher(pub, interface.convert_to_rosidl)
 
     @staticmethod
     def get_qos(interface):

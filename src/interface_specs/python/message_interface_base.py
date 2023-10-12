@@ -16,6 +16,7 @@
 class MessageInterfaceBase:
     def __init__(self):
         self.Message = None
+        self.RosType = None
         self.name = None
         self.reliability = None
         self.durability = None

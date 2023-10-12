@@ -18,6 +18,7 @@ from rclpy.qos import DurabilityPolicy, ReliabilityPolicy
 import interface_msgs.msg
 
 Interface = MessageInterfaceBase()
+Interface.RosType = interface_msgs.msg.SampleMessage
 Interface.Message = interface_msgs.msg.SampleMessage
 Interface.name = "/sample/color"
 Interface.reliability = ReliabilityPolicy.RELIABLE

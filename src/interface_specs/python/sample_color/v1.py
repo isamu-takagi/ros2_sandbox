@@ -42,6 +42,7 @@ def convert_to_custom(rosidl):
 
 
 Interface = MessageInterfaceBase()
+Interface.RosType = interface_msgs.msg.SampleMessage
 Interface.Message = CustomMessage
 Interface.name = "/sample/color"
 Interface.reliability = ReliabilityPolicy.RELIABLE

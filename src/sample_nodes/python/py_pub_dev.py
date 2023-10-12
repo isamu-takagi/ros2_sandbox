@@ -14,14 +14,14 @@
 
 import rclpy
 import rclpy.node
-from interface_specs.interface_manager import AutowareInterfaceManager
+from interface_specs.interface_manager import ComponentInterfaceManager
 from interface_specs.sample_color.dev import Interface as SampleColor
 
 
 class PyPubDev(rclpy.node.Node):
     def __init__(self):
         super().__init__("py_pub_dev")
-        self.manager = AutowareInterfaceManager(self)
+        self.manager = ComponentInterfaceManager(self)
         self.pub = self.manager.create_publisher(SampleColor)
         self.timer = self.create_timer(1.0, self.on_timer)
 

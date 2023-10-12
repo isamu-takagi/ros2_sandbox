@@ -15,12 +15,12 @@
 import rclpy
 import rclpy.node
 from interface_specs.interface_manager import ComponentInterfaceManager
-from interface_specs.sample_color.dev import Interface as SampleColor
+from interface_specs.sample_color.v1 import Interface as SampleColor
 
 
-class PySubDev(rclpy.node.Node):
+class PySubV1(rclpy.node.Node):
     def __init__(self):
-        super().__init__("py_sub_dev")
+        super().__init__("py_sub_v1")
         self.manager = ComponentInterfaceManager(self)
         self.sub = self.manager.create_subscription(SampleColor, self.on_msg)
 
@@ -34,5 +34,5 @@ class PySubDev(rclpy.node.Node):
 
 if __name__ == "__main__":
     rclpy.init()
-    rclpy.spin(PySubDev())
+    rclpy.spin(PySubV1())
     rclpy.shutdown()
