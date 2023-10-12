@@ -12,9 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "cpp_pub_v1.hpp"
+#include <interface_specs/interface_manager.hpp>
+#include <interface_specs/sample_color/v1.hpp>
+#include <rclcpp/rclcpp.hpp>
 
-#include <memory>
+class CppPubV1 : public rclcpp::Node
+{
+public:
+  CppPubV1();
+
+private:
+  using SampleColor = interface_specs::sample_color::v1::Interface;
+  interface_specs::ComponentInterfaceManager::UniquePtr interface_;
+  SampleColor::Publisher pub_;
+  rclcpp::TimerBase::SharedPtr timer_;
+  void on_timer();
+};
 
 CppPubV1::CppPubV1() : Node("cpp_pub_v1")
 {

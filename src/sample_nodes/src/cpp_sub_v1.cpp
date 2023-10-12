@@ -12,9 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "cpp_sub_v1.hpp"
+#include <interface_specs/interface_manager.hpp>
+#include <interface_specs/sample_color/v1.hpp>
+#include <rclcpp/rclcpp.hpp>
 
-#include <memory>
+class CppSubV1 : public rclcpp::Node
+{
+public:
+  CppSubV1();
+
+private:
+  using SampleColor = interface_specs::sample_color::v1::Interface;
+  interface_specs::ComponentInterfaceManager::UniquePtr interface_;
+  SampleColor::Subscription sub_;
+  void on_color(const SampleColor::Message & msg);
+};
 
 CppSubV1::CppSubV1() : Node("cpp_sub_v1")
 {
