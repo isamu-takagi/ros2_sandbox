@@ -27,9 +27,11 @@ class PyPubDev(rclpy.node.Node):
 
     def on_timer(self):
         msg = SampleColor.Message()
-        msg.r = 14.0
-        msg.g = 15.0
-        msg.b = 16.0
+        msg.has_alpha = True
+        msg.color.r = 14.0
+        msg.color.g = 15.0
+        msg.color.b = 16.0
+        msg.color.a = 17.0
         self.pub.publish(msg)
 
 

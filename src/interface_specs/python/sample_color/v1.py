@@ -27,17 +27,18 @@ class CustomMessage:
 
 def convert_to_rosidl(custom):
     rosidl = interface_msgs.msg.SampleMessage()
-    rosidl.r = custom.r
-    rosidl.g = custom.g
-    rosidl.b = custom.b
+    rosidl.has_alpha = False
+    rosidl.color.r = custom.r
+    rosidl.color.g = custom.g
+    rosidl.color.b = custom.b
     return rosidl
 
 
 def convert_to_custom(rosidl):
     custom = CustomMessage()
-    custom.r = rosidl.r
-    custom.g = rosidl.g
-    custom.b = rosidl.b
+    custom.r = rosidl.color.r
+    custom.g = rosidl.color.g
+    custom.b = rosidl.color.b
     return custom
 
 

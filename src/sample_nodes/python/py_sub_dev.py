@@ -26,9 +26,11 @@ class PySubDev(rclpy.node.Node):
 
     def on_msg(self, msg):
         logger = self.get_logger()
-        logger.info(f"r: {msg.r}")
-        logger.info(f"g: {msg.g}")
-        logger.info(f"b: {msg.b}")
+        logger.info(f"r: {msg.color.r}")
+        logger.info(f"g: {msg.color.g}")
+        logger.info(f"b: {msg.color.b}")
+        if msg.has_alpha:
+            logger.info(f"a: {msg.color.a}")
         logger.info("---")
 
 
