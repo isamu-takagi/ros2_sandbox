@@ -1,4 +1,4 @@
 <launch>
-  <autoware/>
-  <log message="$(load-yaml aaaaa)"/>
+  <struct-set field="autoware.system.diagnostics.aggregator.graph_path" value="graph.yaml"/>
+  <struct-set field="autoware.system.diagnostics.aggregator.param_path" value="param.yaml"/>
 </launch>
