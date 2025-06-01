@@ -1,4 +1,9 @@
 <launch>
   <struct-set field="autoware.system.diagnostics.aggregator.graph_path" value="graph.yaml"/>
   <struct-set field="autoware.system.diagnostics.aggregator.param_path" value="param.yaml"/>
+
+  <include file="$(dirname)/autoware.launch.xml">
+    <arg name="autoware" value="$(var autoware)"/>
+  </include>
+
 </launch>

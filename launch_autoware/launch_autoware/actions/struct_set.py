@@ -27,6 +27,13 @@ class StructSet(Action):
         return cls, kwargs
 
     def execute(self, context: LaunchContext):
+        from yaml import safe_dump, safe_load
+
         field = perform_substitutions(context, self.__field)
         value = perform_substitutions(context, self.__value)
-        struct_set_field(context.launch_configurations, field, value)
+        parts = field.split(".")
+        root = parts.pop(0)
+        leaf = parts.pop()
+        data = safe_load(context.launch_configurations.get(root, "{}"))
+        struct_set_field(data, parts)[leaf] = value
+        context.launch_configurations[root] = safe_dump(data, default_flow_style=True)

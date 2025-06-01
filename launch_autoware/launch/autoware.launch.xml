@@ -1,0 +1,4 @@
+<launch>
+  <arg name="autoware"/>
+  <log message="$(var autoware)"/>
+</launch>
