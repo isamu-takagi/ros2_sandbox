@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="sync_service_call" exec="single_thread"/>
+  <node pkg="examples_rclcpp_minimal_service" exec="service_main"/>
+</launch>
