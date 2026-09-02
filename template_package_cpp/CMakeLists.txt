@@ -4,12 +4,17 @@ project(template_package_cpp)
 find_package(ament_cmake_auto REQUIRED)
 ament_auto_find_build_dependencies()
 
-# ament_auto_add_library(${PROJECT_NAME} SHARED
-#   main.cpp
-# )
-
-ament_auto_add_executable(main_node
+ament_auto_add_executable(main
   "src/main.cpp"
+)
+
+ament_auto_add_library(${PROJECT_NAME} SHARED
+  src/node.cpp
+)
+
+rclcpp_components_register_node(${PROJECT_NAME}
+  PLUGIN "TemplateNode"
+  EXECUTABLE node
 )
 
 if(BUILD_TESTING)
@@ -19,4 +24,6 @@ if(BUILD_TESTING)
   ament_auto_add_gtest(test_${PROJECT_NAME} ${test_files})
 endif()
 
-ament_auto_package()
+ament_auto_package(INSTALL_TO_SHARE
+  launch
+)

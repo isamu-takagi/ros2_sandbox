@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="template_package_cpp" exec="node"/>>
+</launch>
