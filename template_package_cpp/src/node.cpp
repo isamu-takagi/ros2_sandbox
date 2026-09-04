@@ -13,10 +13,23 @@
 // limitations under the License.
 
 #include "node.hpp"
+#include <string>
 
 TemplateNode::TemplateNode(const rclcpp::NodeOptions & options) : Node("template", options)
 {
   RCLCPP_INFO_STREAM(get_logger(), "Hello, World!");
+
+  const auto foo = declare_parameter<std::string>("foo");
+  const auto bar = declare_parameter<double>("bar");
+  const auto baz = declare_parameter<std::vector<int>>("baz");
+
+  RCLCPP_INFO_STREAM(get_logger(), "foo: " << foo);
+  RCLCPP_INFO_STREAM(get_logger(), "bar: " << bar);
+  RCLCPP_INFO_STREAM(get_logger(), "baz: ");
+  for (const auto & value : baz)
+  {
+    RCLCPP_INFO_STREAM(get_logger(), " - " << value);
+  }
 }
 
 #include <rclcpp_components/register_node_macro.hpp>

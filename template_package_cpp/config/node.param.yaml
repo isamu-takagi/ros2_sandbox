@@ -1,0 +1,5 @@
+/**:
+  ros__parameters:
+    foo: ABCDEFG
+    bar: 12.34
+    baz: [9, 8, 7, 6, 5]

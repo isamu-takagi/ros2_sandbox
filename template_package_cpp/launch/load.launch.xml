@@ -1,0 +1,17 @@
+<launch>
+  <group>
+    <push-ros-namespace namespace="ns"/>
+    <node_container pkg="rclcpp_components" exec="component_container" name="container" namespace=""/>
+    <load_composable_node target="/ns/container">
+      <composable_node pkg="template_package_cpp" plugin="TemplateNode" name="node1">
+        <param from="$(find-pkg-share template_package_cpp)/config/node.param.yaml"/>
+      </composable_node>
+    </load_composable_node>
+    <load_composable_node target="/ns/container">
+      <composable_node pkg="template_package_cpp" plugin="TemplateNode" name="node2">
+        <param name="foo" value="from-launch-file"/>
+        <param from="$(find-pkg-share template_package_cpp)/config/load.param.yaml"/>
+      </composable_node>
+    </load_composable_node>
+  </group>
+</launch>

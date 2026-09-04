@@ -1,3 +1,6 @@
 <launch>
-  <node pkg="template_package_cpp" exec="node"/>>
+  <arg name="config" default="$(find-pkg-share template_package_cpp)/config/node.param.yaml"/>
+  <node pkg="template_package_cpp" exec="node">
+    <param from="$(var config)"/>
+  </node>
 </launch>

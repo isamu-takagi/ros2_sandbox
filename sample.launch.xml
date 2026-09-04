@@ -1,0 +1,7 @@
+<launch>
+    <arg name="config" default="$(find-pkg-share template_package_cpp)/config/node.param.yaml"/>
+
+    <include file="$(find-pkg-share template_package_cpp)/launch/node.launch.xml">
+        <arg name="config" value="$(var config)"/>
+    </include>
+</launch>
